@@ -32,14 +32,10 @@ export class ProfResolver {
 
   @Mutation(() => Prof)
   updateProf(@Args('updateProfInput') updateProfInput: UpdateProfInput) {
-    console.log("test ");
-
     if (isUUID(updateProfInput._id, "4")) {
-      console.log("t")
-      return new NotFoundException({ message: "Prof not found" })
+      return this.profService.update(updateProfInput)
     }
-    console.log("test 1")
-    return this.profService.update(updateProfInput);
+    return new NotFoundException({ message: "Prof not found" })
   }
 
   @Mutation(() => Prof)
